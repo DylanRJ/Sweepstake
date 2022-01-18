@@ -19,8 +19,10 @@
 <ul>
   <% @players.each do |player| %>
     <li>
-      <%= player.name %> was drawn 
-      <%= team = Team.find(player.team_id).name %>
+      <%= player.name %>
+      <%= Team.find(player.team_id).name %>
     </li>
   <% end %>
 </ul>
+
+<%= button_to "Add more players", competition_game_path(@competition.id, @game.id), method: :get %>
