@@ -14,6 +14,6 @@ RSpec.describe GamesController, type: :controller do
       competition.save
       post :create, params: { game: {name: "Dean's game"}, competition_id: competition.id }
       expect(Game.find_by(competition_id: competition.id, name: "Dean's game")).to be
-    end 
+    end
   end
 end  
