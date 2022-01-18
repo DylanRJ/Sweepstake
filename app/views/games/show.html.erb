@@ -3,6 +3,7 @@
 
 <h1><%= @game.name %></h1>
 
+
 <h2>Input player names:</h2>
 <%= form_with model: [ @competition, @game, @game.players.build ] do |form| %>
   <% i = 1 %>

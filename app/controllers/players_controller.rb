@@ -1,5 +1,16 @@
 class PlayersController < ApplicationController
 
+  def index
+    @competition = Competition.find(params[:competition_id])
+    @players = Player.all
+    @game = Game.find(params[:game_id])
+  end
+
+  def new
+    @game = Game.find(params[:game_id])
+    @player = @game.players.new
+  end
+
   def create
     @competition = Competition.find(params[:competition_id])
     @game = Game.find(params[:game_id])
@@ -26,5 +37,5 @@ class PlayersController < ApplicationController
   def player_params
     params.require(:player).permit(:name)
   end
-
+  
 end
