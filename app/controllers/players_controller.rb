@@ -14,14 +14,14 @@ class PlayersController < ApplicationController
   def create
     @competition = Competition.find(params[:competition_id])
     @game = Game.find(params[:game_id])
-    @players = Player.all.select { |player| player.game_id == @game.id }
-    @teams = Team.all.select { |team| (team.competition_id == params[:competition_id].to_i) && (@players.none? { |player| player.team_id == team.id }) }.count
-    @randomteams = Team.all.select { |team| (team.competition_id == params[:competition_id].to_i) && (@players.none? { |player| player.team_id == team.id }) }.shuffle
-    i = 1
-    (0...@teams).each do
-      @game.players.create(name: params["player"]["name#{i}"], team_id: @randomteams[i - 1][:id])
-      i += 1
-    end
+    i = 0
+    @competition_teams_array = Team.all.select { |team| team.competition_id == @competition.id }.map { |team| team.id }.shuffle
+    p "This is what we're trying to see #{@competition_teams_array}"
+    @teams_count = Team.all.select { |team| team.competition_id == params[:competition_id].to_i }.count
+      @teams_count.times do
+        @player = @game.players.create(name: params["player"]["player#{i + 1}"], team_id: @competition_teams_array[i])
+        i += 1
+      end
     redirect_to competition_game_player_url(@competition.id, @game.id, :id)
   end
 
@@ -29,7 +29,8 @@ class PlayersController < ApplicationController
     @competition = Competition.find(params[:competition_id])
     @game = Game.find(params[:game_id])
     @players = Player.all.select { |player| player.game_id == @game.id }
-    @teams = Team.all.select { |team| team.competition_id == params[:competition_id].to_i }
+    @teams = Team.all.select { |team| team.competition_id == @competition.id }
+
   end
 
   private

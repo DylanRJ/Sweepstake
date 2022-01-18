@@ -3,11 +3,15 @@
 
 <h1><%= @game.name %></h1>
 
-
-<h2>Input player names:</h2>
-<%= form_with model: [ @competition, @game, @game.players.build ] do |form| %>
-  <% i = 1 %>
-  <% (0...@playerswithoutteams).each do %>
+<h2>New player name:</h2>
+  <%= form_with model: [ @competition, @game, @game.players.build ] do |form, i| %>
+    <% i = 1 %>
+    <% @teams_count.times do %>
+    <p>
+      <%= form.text_field "player#{i}" %>
+    </p>
+    <% i += 1 %>
+    <% end %>
     <p>
       <%= i %>: <%= form.text_field "name#{i}" %>
       <% i += 1 %>
