@@ -28,7 +28,7 @@ Action 1: copy, paste and run the following
 ```
 team_arr = ["Algeria",       
  "Burkina Faso",    
- "Cabo Verde",     
+ "Cape Verde Islands",     
  "Cameroon",      
  "Comoros",       
  "Ivory Coast",     
