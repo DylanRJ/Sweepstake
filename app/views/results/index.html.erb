@@ -30,13 +30,3 @@
     </div>
   <% end %>
 </div>
-
-<ul>
-  <% @players.each do |player| %>
-    <li>
-      <%= player.name %> was drawn 
-      <%= team = Team.find(player.team_id).name %>
-      <%= form = Team.find(player.team_id).form %>
-    </li>
-  <% end %>
-</ul>
