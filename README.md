@@ -1,5 +1,7 @@
 # Sweepstake
 
+[Hosted on Heroku here](https://aqueous-cliffs-99174.herokuapp.com/)
+
 ## How to run the application
 
 ```
